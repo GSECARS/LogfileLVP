@@ -4,8 +4,7 @@
 # File: __init__.py
 # -----------------------------------------------------------------------------
 # Purpose:
-# This file is used to initialize the LogfileLVP package. It creates the main
-# application object and sets the version of the package.
+# This file is used to initialize the view package of the LogfileLVP.
 # -----------------------------------------------------------------------------
 # Author: Christofanis Skordas
 #
@@ -25,17 +24,7 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.#
 # -----------------------------------------------------------------------------
 
-from logfilelvp import _version
-from logfilelvp.controller import MainController
+from logfilelvp.view.main_view import MainView
 
 
-__all__ = ["app", "__version__"]
-__version__ = _version.get_versions()["version"]
-
-
-# Use a static version number if the tag is not available
-if "unknown" or "untagged" in __version__:
-    __version__ = "0.0.1"
-
-# Main application controller
-app = MainController()
+__all__ = ["MainView"]

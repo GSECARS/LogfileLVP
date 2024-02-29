@@ -1,11 +1,10 @@
 #!/usr/bin/python3
 # -----------------------------------------------------------------------------
 # Project: LogfileLVP
-# File: __init__.py
+# File: main_view.py
 # -----------------------------------------------------------------------------
 # Purpose:
-# This file is used to initialize the LogfileLVP package. It creates the main
-# application object and sets the version of the package.
+# This file is used to create the main application view for the project.
 # -----------------------------------------------------------------------------
 # Author: Christofanis Skordas
 #
@@ -25,17 +24,19 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.#
 # -----------------------------------------------------------------------------
 
-from logfilelvp import _version
-from logfilelvp.controller import MainController
+from qtpy.QtWidgets import QMainWindow
 
 
-__all__ = ["app", "__version__"]
-__version__ = _version.get_versions()["version"]
+class MainView(QMainWindow):
+    """This class is responsible for creating the main application view for LogfileLVP."""
 
+    def __init__(self) -> None:
+        """Initializes the main application view for LogfileLVP."""
+        super(MainView, self).__init__()
 
-# Use a static version number if the tag is not available
-if "unknown" or "untagged" in __version__:
-    __version__ = "0.0.1"
-
-# Main application controller
-app = MainController()
+    def display_window(self, version: str) -> None:
+        """Displays the main application window."""
+        # Set the window title based on the version of the application
+        self.setWindowTitle(f"LogfileLVP {version}")
+        # Display the main application window
+        self.showNormal()

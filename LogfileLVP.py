@@ -1,11 +1,11 @@
 #!/usr/bin/python3
 # -----------------------------------------------------------------------------
 # Project: LogfileLVP
-# File: __init__.py
+# File: LogfileLVP.py
 # -----------------------------------------------------------------------------
 # Purpose:
-# This file is used to initialize the LogfileLVP package. It creates the main
-# application object and sets the version of the package.
+# This is the main file of the LogfileLVP project. It is used to create a GUI
+# application instance using PyQt6 libraries.
 # -----------------------------------------------------------------------------
 # Author: Christofanis Skordas
 #
@@ -25,17 +25,8 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.#
 # -----------------------------------------------------------------------------
 
-from logfilelvp import _version
-from logfilelvp.controller import MainController
+from logfilelvp import app, __version__
 
 
-__all__ = ["app", "__version__"]
-__version__ = _version.get_versions()["version"]
-
-
-# Use a static version number if the tag is not available
-if "unknown" or "untagged" in __version__:
-    __version__ = "0.0.1"
-
-# Main application controller
-app = MainController()
+if __name__ == "main":
+    app.run(version=__version__)

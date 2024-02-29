@@ -1,11 +1,10 @@
 #!/usr/bin/python3
 # -----------------------------------------------------------------------------
 # Project: LogfileLVP
-# File: __init__.py
+# File: main_controller.py
 # -----------------------------------------------------------------------------
 # Purpose:
-# This file is used to initialize the LogfileLVP package. It creates the main
-# application object and sets the version of the package.
+# This file is used to create the main application controller for the project.
 # -----------------------------------------------------------------------------
 # Author: Christofanis Skordas
 #
@@ -25,17 +24,26 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.#
 # -----------------------------------------------------------------------------
 
-from logfilelvp import _version
-from logfilelvp.controller import MainController
+import sys
+from typing import Optional
+
+from qtpy.QtWidgets import QApplication
+
+from logfilelvp.view import MainView
 
 
-__all__ = ["app", "__version__"]
-__version__ = _version.get_versions()["version"]
+class MainController:
+    """This class is responsible for controlling the main application of LogfileLVP."""
 
+    def __init__(self) -> None:
+        """Initializes the main application for LogfileLVP."""
+        self._app = QApplication(sys.argv)
+        self._view = MainView()
 
-# Use a static version number if the tag is not available
-if "unknown" or "untagged" in __version__:
-    __version__ = "0.0.1"
-
-# Main application controller
-app = MainController()
+    def run(self, version: Optional[str] = "") -> None:
+        """Runs the main application."""
+        # Display the main view
+        self._view.display_window(version=version)
+        # Start the PyQt application event loop and exit the Python
+        # script with the status code returned by the application
+        sys.exit(self._app.exec_())
