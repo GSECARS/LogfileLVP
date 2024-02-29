@@ -1,0 +1,32 @@
+# -----------------------------------------------------------------------------
+# Project: LogfileLVP
+# File: requirements.txt
+# -----------------------------------------------------------------------------
+# Purpose: 
+# This file lists the Python packages that are required for the development of
+# the LogfileLVP project.
+# -----------------------------------------------------------------------------
+# Author: Christofanis Skordas
+#
+# Copyright (C) 2024 GSECARS, The University of Chicago, USA
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.#
+# -----------------------------------------------------------------------------
+
+setuptools==68.2.2
+wheel==0.41.2
+versioneer==0.29
+black==24.2.0
+flake8==7.0.0
+pre-commit==3.6.2

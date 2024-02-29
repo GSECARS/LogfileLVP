@@ -1,0 +1,41 @@
+# -----------------------------------------------------------------------------
+# Project: LogfileLVP
+# File: setup.cfg
+# -----------------------------------------------------------------------------
+# Purpose: 
+# This file is used to configure the packaging, and the distribution process 
+# for the LogfileLVP project. It is used by setup tools like setuptools 
+# and distutils.
+# -----------------------------------------------------------------------------
+# Author: Christofanis Skordas
+#
+# Copyright (C) 2024 GSECARS, The University of Chicago, USA
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.#
+# -----------------------------------------------------------------------------
+
+repos:
+
+  - repo: https://github.com/psf/black
+    rev: 24.2.0
+    hooks:
+      - id: black
+        language_version: python3.11
+        args: [--line-length=120]
+
+  - repo: https://github.com/PyCQA/flake8
+    rev: 7.0.0
+    hooks:
+      - id: flake8
+        args: [--max-line-length=120, --ignore=F401]
