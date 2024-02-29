@@ -46,4 +46,4 @@ class MainController:
         self._view.display_window(version=version)
         # Start the PyQt application event loop and exit the Python
         # script with the status code returned by the application
-        sys.exit(self._app.exec_())
+        sys.exit(self._app.exec())
