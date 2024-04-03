@@ -25,17 +25,11 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.#
 # -----------------------------------------------------------------------------
 
-from logfilelvp import _version
+from logfilelvp.version import get_static_version
 from logfilelvp.controller import MainController
 
+__all__ = ["__version__", "app"]
+__version__ = get_static_version()
 
-__all__ = ["app", "__version__"]
-__version__ = _version.get_versions()["version"]
-
-
-# Use a static version number if the tag is not available
-if "unknown" or "untagged" in __version__:
-    __version__ = "0.0.1"
-
-# Main application controller
+# Application controller
 app = MainController()

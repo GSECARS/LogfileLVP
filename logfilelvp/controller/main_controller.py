@@ -25,25 +25,65 @@
 # -----------------------------------------------------------------------------
 
 import sys
+import time
 from typing import Optional
 
+from qtpy.QtCore import Qt
 from qtpy.QtWidgets import QApplication
 
+from logfilelvp.model import MainModel, QtWorkerModel
 from logfilelvp.view import MainView
 
 
 class MainController:
-    """This class is responsible for controlling the main application of LogfileLVP."""
+    """This class is responsible for controlling the main application for LogfileLVP."""
 
     def __init__(self) -> None:
-        """Initializes the main application for LogfileLVP."""
+        """This method initializes the main application for LogfileLVP."""
         self._app = QApplication(sys.argv)
-        self._view = MainView()
+        self._model = MainModel()
+        self._view = MainView(directories=self._model.directories)
+
+        # Main application thread
+        self._main_worker = QtWorkerModel(self._thread_methods, ())
+
+        # Run main controller methods
+        self._configure_main_controller()
 
     def run(self, version: Optional[str] = "") -> None:
-        """Runs the main application."""
-        # Display the main view
-        self._view.display_window(version=version)
-        # Start the PyQt application event loop and exit the Python
-        # script with the status code returned by the application
+        """This method is responsible for running the main application for LogfileLVP."""
+        # Display the view
+        self._view.display_window(
+            version=version, size=self._model.settings.display.size, position=self._model.settings.display.position, state=self._model.settings.display.state
+        )
+
+        # Start the PyQt application's event loop and exit the Python script with the status code returned by the
+        # application
         sys.exit(self._app.exec())
+
+    def _thread_methods(self) -> None:
+        """Run all thread methods"""
+        while not self._view.close_triggered:
+            time.sleep(0.05)
+
+        # Set thread status to finished, so the GUI loop can end
+        self._view.threads_finished = True
+
+    def _close_event_triggered(self) -> None:
+        """Saves the main application window size, position and state."""
+        # Save the size
+        self._model.settings.display.size = self._view.size()
+        # Save the position
+        self._model.settings.display.position = self._view.pos()
+        # Save the state (maximized or not)
+        if self._view.windowState() == Qt.WindowState.WindowMaximized:
+            self._model.settings.display.state = 4
+        else:
+            self._model.settings.display.state = 2
+
+    def _configure_main_controller(self) -> None:
+        """Basic configuration for the main controller functionality."""
+        # Connects the signal and slot for the main view settings.
+        self._view.close_event_changed.connect(self._close_event_triggered)
+        # Start the main application thread
+        self._main_worker.start()

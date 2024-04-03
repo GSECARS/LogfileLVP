@@ -1,14 +1,11 @@
+#!/usr/bin/python3
 # -----------------------------------------------------------------------------
-# Project: LogfileLVP
-# File: .gitignore
+# Project: LogFileLVP
+# File: __init__.py
+# Author: Christofanis Skordas (skordasc@uchicago.edu)
 # -----------------------------------------------------------------------------
-# Purpose: 
-# This file is used by Git to determine which files and directories to ignore 
-# when committing changes.
-# -----------------------------------------------------------------------------
-# Author: Christofanis Skordas
-#
-# Copyright (C) 2024 GSECARS, The University of Chicago, USA
+# Purpose:
+# This file main file of the settings model package.
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -21,24 +18,9 @@
 # GNU General Public License for more details.
 #
 # You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <https://www.gnu.org/licenses/>.#
-# -----------------------------------------------------------------------------
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+# ----------------------------------------------------------------------
 
-# Byte-compiled / optimized / DLL files
-__pycache__/
-*.py[cod]
+from logfilelvp.model.settings.settings_model import SettingsModel
 
-# Distribution / packaging
-*.egg-info/
-dist/
-build/
-
-# OS generated files
-.DS_Store
-Thumbs.db
-Desktop.ini
-*~
-
-# Editors
-.idea/
-.vscode/
+__all__ = ["SettingsModel"]

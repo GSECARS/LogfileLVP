@@ -1,10 +1,10 @@
+#!/usr/bin/python3
 # -----------------------------------------------------------------------------
 # Project: LogfileLVP
-# File: .gitignore
+# File: __init__.py
 # -----------------------------------------------------------------------------
-# Purpose: 
-# This file is used by Git to determine which files and directories to ignore 
-# when committing changes.
+# Purpose:
+# This file is used to initialize the model package for the LogfileLVP project.
 # -----------------------------------------------------------------------------
 # Author: Christofanis Skordas
 #
@@ -24,21 +24,8 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.#
 # -----------------------------------------------------------------------------
 
-# Byte-compiled / optimized / DLL files
-__pycache__/
-*.py[cod]
+from logfilelvp.model.qt_worker_model import QtWorkerModel
+from logfilelvp.model.path_model import PathModel
+from logfilelvp.model.main_model import MainModel
 
-# Distribution / packaging
-*.egg-info/
-dist/
-build/
-
-# OS generated files
-.DS_Store
-Thumbs.db
-Desktop.ini
-*~
-
-# Editors
-.idea/
-.vscode/
+__all__ = ["MainModel", "QtWorkerModel", "PathModel"]

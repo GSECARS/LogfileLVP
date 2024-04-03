@@ -25,4 +25,4 @@
 
 PyQt6==6.6.1
 QtPy==2.4.1
-GSEWidgets==0.0.1
+GSEWidgets==0.0.2

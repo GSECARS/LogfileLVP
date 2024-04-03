@@ -24,9 +24,8 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.#
 # -----------------------------------------------------------------------------
 
-setuptools==68.2.2
-wheel==0.41.2
-versioneer==0.29
-black==24.2.0
+black==24.3.0
 flake8==7.0.0
+mypy==1.9.0
 pre-commit==3.6.2
+setuptools==69.2.0

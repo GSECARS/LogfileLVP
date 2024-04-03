@@ -1,14 +1,11 @@
 #!/usr/bin/python3
 # -----------------------------------------------------------------------------
-# Project: LogfileLVP
-# File: __init__.py
+# Project: LogFileLVP
+# File: qt_worker_model.py
+# Author: Christofanis Skordas (skordasc@uchicago.edu)
 # -----------------------------------------------------------------------------
 # Purpose:
-# This file is used to initialize the controller package of the LogfileLVP.
-# -----------------------------------------------------------------------------
-# Author: Christofanis Skordas
-#
-# Copyright (C) 2024 GSECARS, The University of Chicago, USA
+# This file contains the main worker model for the LogFileLVP application.
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -21,9 +18,21 @@
 # GNU General Public License for more details.
 #
 # You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <https://www.gnu.org/licenses/>.#
-# -----------------------------------------------------------------------------
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+# ----------------------------------------------------------------------
 
-from logfilelvp.controller.main_controller import MainController
+from qtpy.QtCore import QThread
+from typing import Any, Callable
 
-__all__ = ["MainController"]
+
+class QtWorkerModel(QThread):
+    """The main worker class that's been used for threading."""
+
+    def __init__(self, method: Callable[[], None], args: Any) -> None:
+        super(QtWorkerModel, self).__init__()
+
+        self._method = method
+        self._args = args
+
+    def run(self) -> None:
+        self._method(*self._args)

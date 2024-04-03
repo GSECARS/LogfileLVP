@@ -1,14 +1,11 @@
+#!/usr/bin/python3
 # -----------------------------------------------------------------------------
-# Project: LogfileLVP
-# File: .gitignore
+# Project: LogFileLVP
+# File: central_widget.py
+# Author: Christofanis Skordas (skordasc@uchicago.edu)
 # -----------------------------------------------------------------------------
-# Purpose: 
-# This file is used by Git to determine which files and directories to ignore 
-# when committing changes.
-# -----------------------------------------------------------------------------
-# Author: Christofanis Skordas
-#
-# Copyright (C) 2024 GSECARS, The University of Chicago, USA
+# Purpose:
+# This file contains the central widget for the LogfileLVP application.
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -21,24 +18,17 @@
 # GNU General Public License for more details.
 #
 # You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <https://www.gnu.org/licenses/>.#
-# -----------------------------------------------------------------------------
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+# ----------------------------------------------------------------------
 
-# Byte-compiled / optimized / DLL files
-__pycache__/
-*.py[cod]
+from qtpy.QtWidgets import QFrame, QGridLayout
 
-# Distribution / packaging
-*.egg-info/
-dist/
-build/
 
-# OS generated files
-.DS_Store
-Thumbs.db
-Desktop.ini
-*~
+class CentralWidget(QFrame):
+    """This class is responsible for displaying the central widget for LogfileLVP."""
 
-# Editors
-.idea/
-.vscode/
+    def __init__(self) -> None:
+        super(CentralWidget, self).__init__()
+
+        layout = QGridLayout()
+        self.setLayout(layout)
