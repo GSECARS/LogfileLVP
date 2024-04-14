@@ -19,11 +19,9 @@ There are three ways to install LogfileLVP: by downloading the latest release fr
 ### Downloading the Latest Release
 To download the latest release: 
 
-```bash
-Go to the [releases](https://github.com/GSECARS/LogfileLVP/releases) page of the LogfileLVP repository.  
-Download the latest .exe file.  
-Run the installer and follow the on-screen instructions.
-```
+1. Go to the [releases](https://github.com/GSECARS/LogfileLVP/releases) page of the LogfileLVP repository.  
+2. Download the latest .exe file.  
+3. Run the installer and follow the on-screen instructions.
 
 ### Setting Up From Source
 To use the project from source, follow these steps:
