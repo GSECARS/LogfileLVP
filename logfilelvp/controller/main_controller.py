@@ -50,6 +50,8 @@ class MainController:
         # Run main controller methods
         self._configure_main_controller()
 
+        self._model.experiments.experiment_settings.root_directory = "D:/Test"
+
     def run(self, version: Optional[str] = "") -> None:
         """This method is responsible for running the main application for LogfileLVP."""
         # Display the view
@@ -64,6 +66,8 @@ class MainController:
     def _thread_methods(self) -> None:
         """Run all thread methods"""
         while not self._view.close_triggered:
+            # Find the latest experiment and set the new experiment number
+            self._model.experiments.find_next_available_number()
             time.sleep(0.05)
 
         # Set thread status to finished, so the GUI loop can end

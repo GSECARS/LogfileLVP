@@ -28,6 +28,7 @@ from dataclasses import dataclass, field
 
 from logfilelvp.model.settings import SettingsModel
 from logfilelvp.model.path_model import PathModel
+from logfilelvp.model.experiment_model import ExperimentModel
 
 
 @dataclass
@@ -36,10 +37,12 @@ class MainModel:
 
     _settings: SettingsModel = field(init=False, repr=False, compare=False)
     _directories: PathModel = field(init=False, repr=False, compare=False)
+    _experiments: ExperimentModel = field(init=False, repr=False, compare=False)
 
     def __post_init__(self) -> None:
         self._settings = SettingsModel()
         self._directories = PathModel()
+        self._experiments = ExperimentModel(experiment_settings=self._settings.experiment_settings)
 
     @property
     def settings(self) -> SettingsModel:
@@ -50,3 +53,8 @@ class MainModel:
     def directories(self) -> PathModel:
         """This property returns the directories model instance of the main model."""
         return self._directories
+
+    @property
+    def experiments(self) -> ExperimentModel:
+        """This property returns the experiments model instance of the main model."""
+        return self._experiments

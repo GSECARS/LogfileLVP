@@ -25,6 +25,7 @@ from dataclasses import dataclass, field
 from qtpy.QtCore import QSettings
 
 from logfilelvp.model.settings.display_model import DisplayModel
+from logfilelvp.model.settings.experiment_settings_model import ExperimentSettingsModel
 
 
 @dataclass
@@ -33,12 +34,19 @@ class SettingsModel:
 
     _settings: QSettings = field(init=False, repr=False, compare=False)
     _display: DisplayModel = field(init=False, repr=False, compare=False)
+    _experiment_settings: ExperimentSettingsModel = field(init=False, repr=False, compare=False)
 
     def __post_init__(self) -> None:
         self._settings = QSettings("GSECARS", "LogFileLVP")
         self._display = DisplayModel(settings=self._settings)
+        self._experiment_settings = ExperimentSettingsModel(settings=self._settings)
 
     @property
     def display(self) -> DisplayModel:
         """This property returns the display model instance of the settings model."""
         return self._display
+
+    @property
+    def experiment_settings(self) -> ExperimentSettingsModel:
+        """This property returns the experiment settings model instance of the settings model."""
+        return self._experiment_settings
