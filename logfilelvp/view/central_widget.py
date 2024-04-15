@@ -26,6 +26,7 @@ from pathlib import PurePosixPath
 
 from logfilelvp.model import PathModel
 from logfilelvp.view.sidebar_view import SidebarView
+from logfilelvp.view.settings_view import SettingsView
 
 
 class CentralWidget(QFrame):
@@ -38,6 +39,7 @@ class CentralWidget(QFrame):
 
         # Sidebar
         self.sidebar = SidebarView(directories=self._directories)
+        self.settings = SettingsView(directories=self._directories)
         self.stacked_widget = QStackedWidget(self)
 
         self.configure_central_widget()
@@ -49,6 +51,8 @@ class CentralWidget(QFrame):
         self.setObjectName("central-widget")
         # Set the style sheet
         self.setStyleSheet(open(PurePosixPath(self._directories.style_path).joinpath("main.qss").as_posix(), "r").read())
+        # Add the widgets to the stacked widget
+        self.stacked_widget.addWidget(self.settings)
 
     def configure_layout(self) -> None:
         """Configure the layout of the central widget."""
