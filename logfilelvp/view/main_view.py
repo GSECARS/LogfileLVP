@@ -45,7 +45,7 @@ class MainView(QMainWindow):
         self._directories = directories
 
         # Central widget
-        self.widgets = CentralWidget()
+        self.widgets = CentralWidget(directories=self._directories)
 
         # Event helpers
         self._close_triggered: bool = False
@@ -55,7 +55,7 @@ class MainView(QMainWindow):
         # Set the window title based on the version number
         self.setWindowTitle(f"LogfileLVP {version}") if version else self.setWindowTitle("LogfileLVP")
         # Set the window icon
-        self.setWindowIcon(QIcon(PurePosixPath(self._directories.icon_path).joinpath("LogfileLVP.png").as_posix()))
+        self.setWindowIcon(QIcon(PurePosixPath(self._directories.icon_path).joinpath("logfilelvp.png").as_posix()))
         # Set the central widget
         self.setCentralWidget(self.widgets)
         # Display the window

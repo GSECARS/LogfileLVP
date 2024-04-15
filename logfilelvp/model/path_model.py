@@ -20,7 +20,7 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
-# ----------------------------------------------------------------------
+# -----------------------------------------------------------------------------
 
 from dataclasses import dataclass, field
 from pathlib import Path, PurePosixPath
@@ -36,8 +36,14 @@ class PathModel:
     def __post_init__(self) -> None:
         self._assets_path = Path("logfilelvp/assets").absolute().as_posix()
         self._icon_path = PurePosixPath(self._assets_path).joinpath("icons").as_posix()
+        self._style_path = PurePosixPath(self._assets_path).joinpath("styles").as_posix()
 
     @property
     def icon_path(self) -> str:
         """Return the path of the icons' directory."""
         return self._icon_path
+
+    @property
+    def style_path(self) -> str:
+        """Return the path of the styles' directory."""
+        return self._style_path
