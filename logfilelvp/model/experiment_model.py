@@ -25,6 +25,7 @@
 import re
 from dataclasses import dataclass, field
 from pathlib import Path
+from typing import Pattern
 
 from logfilelvp.model.settings.experiment_settings_model import ExperimentSettingsModel
 
@@ -37,6 +38,7 @@ class ExperimentModel:
 
     _root_directory_is_invalid: bool = field(init=False, repr=False, compare=False, default=True)
     _next_experiment_number: int = field(init=False, repr=False, compare=False, default=1)
+    _search_pattern: Pattern[str] = field(init=False, repr=False, compare=False, default=re.compile(r"[DRTP][0-9]+"))
 
     def find_next_available_number(self) -> None:
         """Find the next available experiment number."""
@@ -48,20 +50,30 @@ class ExperimentModel:
 
         # Find the next available number
         self._root_directory_is_invalid = False
-        next_number = 1
-        pattern = re.compile(r"[DRTP][0-9]+")
 
-        for directory in Path(self.experiment_settings.root_directory).rglob("*"):
-            # Check if it is a directory
-            if directory.is_dir():
+        # Search recursively for the pattern
+        self._next_experiment_number = self._search_recursive(Path(self.experiment_settings.root_directory)) + 1
 
-                # Check if the directory name matches the pattern
-                directory_name = directory.name
-                if pattern.match(directory_name):
-                    number = int(re.findall(r"\d+", directory_name)[0])
-                    next_number = max(next_number, number)
+    def _search_recursive(self, directory: Path) -> int:
+        """Recursively search for matching directories."""
+        current_number = 0
 
-        self._next_experiment_number = next_number + 1
+        # Loop through the subdirectories
+        for subdirectory in directory.iterdir():
+            if subdirectory.is_dir():
+                subdirectory_name = subdirectory.name
+
+                # Check if the subdirectory name matches the pattern
+                if self._search_pattern.match(subdirectory_name):
+                    found_number = int(re.findall(r"\d+", subdirectory_name)[0])
+                    print(f"Directory: {subdirectory_name}, Number: {found_number}")
+                else:
+                    found_number = self._search_recursive(subdirectory)
+
+                # Update the current max number
+                current_number = max(current_number, found_number)
+
+        return current_number
 
     @property
     def root_directory_is_invalid(self) -> bool:
