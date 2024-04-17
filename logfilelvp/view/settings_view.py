@@ -44,7 +44,11 @@ class SettingsView(QFrame):
         self.btn_select_base_directory = DirectoryBrowserButton(
             size=QSize(38, 38), object_name="button-directory", icon=QIcon(PurePosixPath(self._directories.icon_path).joinpath("experiments.svg").as_posix())
         )
-        self.input_filepath = FilePathInputBox(placeholder="Base directory path", object_name="input-directory")
+        self.input_filepath = FilePathInputBox(
+            placeholder="Base directory path",
+            object_name="input-directory",
+            invalid_characters='<>"|?*#&$',
+        )
 
         # Settings methods
         self.configure_settings_and_settings_widgets()
