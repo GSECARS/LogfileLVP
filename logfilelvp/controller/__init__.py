@@ -24,7 +24,8 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.#
 # -----------------------------------------------------------------------------
 
+from logfilelvp.controller.sidebar_controller import SidebarController
 from logfilelvp.controller.settings_controller import SettingsController
 from logfilelvp.controller.main_controller import MainController
 
-__all__ = ["SettingsController", "MainController"]
+__all__ = ["SidebarController", "SettingsController", "MainController"]

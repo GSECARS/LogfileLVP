@@ -25,8 +25,7 @@ from qtpy.QtWidgets import QFrame, QHBoxLayout, QStackedWidget
 from pathlib import PurePosixPath
 
 from logfilelvp.model import PathModel
-from logfilelvp.view.sidebar_view import SidebarView
-from logfilelvp.view.settings_view import SettingsView
+from logfilelvp.view import SidebarView, ExperimentView, PlottingView, SettingsView
 
 
 class CentralWidget(QFrame):
@@ -39,6 +38,8 @@ class CentralWidget(QFrame):
 
         # Sidebar
         self.sidebar = SidebarView(directories=self._directories)
+        self.experiment = ExperimentView(directories=self._directories)
+        self.plotting = PlottingView(directories=self._directories)
         self.settings = SettingsView(directories=self._directories)
         self.stacked_widget = QStackedWidget(self)
 
@@ -52,7 +53,11 @@ class CentralWidget(QFrame):
         # Set the style sheet
         self.setStyleSheet(open(PurePosixPath(self._directories.style_path).joinpath("main.qss").as_posix(), "r").read())
         # Add the widgets to the stacked widget
+        self.stacked_widget.addWidget(self.experiment)
+        self.stacked_widget.addWidget(self.plotting)
         self.stacked_widget.addWidget(self.settings)
+        # Set the current index
+        self.stacked_widget.setCurrentIndex(0)
 
     def configure_layout(self) -> None:
         """Configure the layout of the central widget."""

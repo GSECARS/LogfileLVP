@@ -39,7 +39,12 @@ class SettingsController:
         self._view = view
 
         # Run methods
+        self._display_saved_settings()
         self._connect_signals()
+
+    def _display_saved_settings(self) -> None:
+        """Displays the saved settings for the settings view"""
+        self._view.widgets.settings.input_filepath.setText(self._model.settings.experiment_settings.root_directory)
 
     def _connect_signals(self) -> None:
         """Used for connecting signals and slots for the view widgets"""

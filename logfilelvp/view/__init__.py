@@ -24,6 +24,10 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.#
 # -----------------------------------------------------------------------------
 
+from logfilelvp.view.sidebar_view import SidebarView
+from logfilelvp.view.experiment_view import ExperimentView
+from logfilelvp.view.plotting_view import PlottingView
+from logfilelvp.view.settings_view import SettingsView
 from logfilelvp.view.main_view import MainView
 
-__all__ = ["MainView"]
+__all__ = ["SidebarView", "ExperimentView", "PlottingView", "SettingsView", "MainView"]

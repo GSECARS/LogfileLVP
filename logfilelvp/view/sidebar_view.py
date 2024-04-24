@@ -63,6 +63,7 @@ class SidebarView(QFrame):
         self.btn_experiments.setIconSize(QSize(20, 20))
         self.btn_experiments.setCheckable(True)
         self.btn_experiments.setChecked(True)
+        self.btn_experiments.setChecked(True)
         self.btn_plotting.setIconSize(QSize(20, 20))
         self.btn_plotting.setCheckable(True)
         self.btn_settings.setIconSize(QSize(20, 20))

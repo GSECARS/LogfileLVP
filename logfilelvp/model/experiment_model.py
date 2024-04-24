@@ -66,7 +66,6 @@ class ExperimentModel:
                 # Check if the subdirectory name matches the pattern
                 if self._search_pattern.match(subdirectory_name):
                     found_number = int(re.findall(r"\d+", subdirectory_name)[0])
-                    print(f"Directory: {subdirectory_name}, Number: {found_number}")
                 else:
                     found_number = self._search_recursive(subdirectory)
 

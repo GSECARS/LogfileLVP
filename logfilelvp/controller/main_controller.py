@@ -33,7 +33,7 @@ from qtpy.QtWidgets import QApplication
 
 from logfilelvp.model import MainModel, QtWorkerModel
 from logfilelvp.view import MainView
-from logfilelvp.controller import SettingsController
+from logfilelvp.controller import SidebarController, SettingsController
 
 
 class MainController:
@@ -46,6 +46,7 @@ class MainController:
         self._view = MainView(directories=self._model.directories)
 
         # Controllers
+        self.sidebar_controller = SidebarController(model=self._model, view=self._view)
         self.settings_controller = SettingsController(model=self._model, view=self._view)
 
         # Main application thread
