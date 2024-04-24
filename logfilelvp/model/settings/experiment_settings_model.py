@@ -33,10 +33,12 @@ class ExperimentSettingsModel:
     settings: QSettings = field(repr=False, compare=False)
 
     _root_directory: str | None = field(init=False, repr=False, compare=False, default=None)
+    _beamline: str | None = field(init=False, repr=False, compare=False, default=None)
 
     def __post_init__(self) -> None:
         """Initialize the ExperimentSettingsModel."""
         self._root_directory = self.settings.value("root_directory", type=str)
+        self._beamline = self.settings.value("beamline", type=str)
 
     @property
     def root_directory(self) -> str | None:
@@ -49,3 +51,15 @@ class ExperimentSettingsModel:
         if Path(value).exists():
             self._root_directory = value
             self.settings.setValue("root_directory", value)
+
+    @property
+    def beamline(self) -> str | None:
+        """Return the beamline of the experiment."""
+        return self._beamline
+
+    @beamline.setter
+    def beamline(self, value: str) -> None:
+        """Set the beamline of the experiment."""
+        if value in ["13-BM-D", "13-ID-C", "13-ID-D"]:
+            self._beamline = value
+            self.settings.setValue("beamline", value)

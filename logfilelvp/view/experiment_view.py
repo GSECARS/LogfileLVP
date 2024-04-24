@@ -55,7 +55,7 @@ class ExperimentView(QFrame):
         """Configure the layout of the experiment view."""
         # Experiment layout
         experiment_layout = QVBoxLayout()
-        experiment_layout.setContentsMargins(0, 0, 0, 0)
+        experiment_layout.setContentsMargins(10, 0, 10, 0)
         experiment_layout.setSpacing(0)
         experiment_layout.addWidget(self._lbl_experiment)
         experiment_layout.addWidget(HorizontalLine(object_name="line-settings"))

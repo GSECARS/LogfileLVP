@@ -55,7 +55,7 @@ class PlottingView(QFrame):
         """Configure the layout of the plotting view."""
         # Plotting layout
         plotting_layout = QVBoxLayout()
-        plotting_layout.setContentsMargins(0, 0, 0, 0)
+        plotting_layout.setContentsMargins(10, 0, 10, 0)
         plotting_layout.setSpacing(0)
         plotting_layout.addWidget(self._lbl_plotting)
         plotting_layout.addWidget(HorizontalLine(object_name="line-settings"))

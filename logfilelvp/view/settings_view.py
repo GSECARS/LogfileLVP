@@ -22,7 +22,7 @@
 # -----------------------------------------------------------------------------
 
 from pathlib import PurePosixPath
-from gsewidgets import Label, DirectoryBrowserButton, FilePathInputBox, HorizontalLine
+from gsewidgets import Label, DirectoryBrowserButton, FilePathInputBox, HorizontalLine, FullComboBox
 from qtpy.QtCore import QSize
 from qtpy.QtGui import QIcon
 from qtpy.QtWidgets import QFrame, QVBoxLayout, QHBoxLayout
@@ -41,6 +41,7 @@ class SettingsView(QFrame):
         # Widgets
         self._lbl_settings = Label("Settings", object_name="lbl-large")
         self._lbl_base_directory = Label("Base Directory", object_name="lbl-settings-first")
+        self._lbl_beamline = Label("Beamline", object_name="lbl-settings")
         self.btn_select_base_directory = DirectoryBrowserButton(
             size=QSize(38, 38), object_name="button-directory", icon=QIcon(PurePosixPath(self._directories.icon_path).joinpath("experiments.svg").as_posix())
         )
@@ -49,6 +50,7 @@ class SettingsView(QFrame):
             object_name="input-directory",
             invalid_characters='<>"|?*#&$',
         )
+        self.combo_beamline = FullComboBox(object_name="combo-beamline")
 
         # Settings methods
         self.configure_settings_and_settings_widgets()
@@ -62,6 +64,9 @@ class SettingsView(QFrame):
         # Set the style sheet
         self.setStyleSheet(open(PurePosixPath(self._directories.style_path).joinpath("settings.qss").as_posix(), "r").read())
 
+        # Combo box configuration
+        self.combo_beamline.addItems(["13-BM-D", "13-ID-C", "13-ID-D"])
+
     def configure_settings_layout(self) -> None:
         """Configure the settings layout."""
         # Base directory layout
@@ -73,12 +78,14 @@ class SettingsView(QFrame):
 
         # Settings layout
         settings_layout = QVBoxLayout()
-        settings_layout.setContentsMargins(0, 0, 10, 0)
+        settings_layout.setContentsMargins(10, 0, 10, 0)
         settings_layout.setSpacing(0)
         settings_layout.addWidget(self._lbl_settings)
         settings_layout.addWidget(HorizontalLine(object_name="line-settings"))
         settings_layout.addWidget(self._lbl_base_directory)
         settings_layout.addLayout(base_directory_layout)
+        settings_layout.addWidget(self._lbl_beamline)
+        settings_layout.addWidget(self.combo_beamline)
         settings_layout.addStretch(1)
 
         # Set the layout

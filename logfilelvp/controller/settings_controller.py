@@ -46,10 +46,21 @@ class SettingsController:
         """Displays the saved settings for the settings view"""
         self._view.widgets.settings.input_filepath.setText(self._model.settings.experiment_settings.root_directory)
 
+        # Set the beamline
+        beamline = self._model.settings.experiment_settings.beamline
+        if beamline == "13-ID-C":
+            index = 1
+        elif beamline == "13-ID-D":
+            index = 2
+        else:
+            index = 0
+        self._view.widgets.settings.combo_beamline.setCurrentIndex(index)
+
     def _connect_signals(self) -> None:
         """Used for connecting signals and slots for the view widgets"""
         self._view.widgets.settings.input_filepath.returnPressed.connect(self._input_filepath_changed)
         self._view.widgets.settings.btn_select_base_directory.directory_changed.connect(self._browse_to_directory_changed)
+        self._view.widgets.settings.combo_beamline.currentIndexChanged.connect(self._beamline_changed)
 
     def _input_filepath_changed(self) -> None:
         """Validates the path specified and changes the root directory"""
@@ -69,3 +80,8 @@ class SettingsController:
             return None
         # Change the root directory
         self._model.settings.experiment_settings.root_directory = directory
+
+    def _beamline_changed(self) -> None:
+        """Changes the beamline for the experiment"""
+        beamline = self._view.widgets.settings.combo_beamline.currentText()
+        self._model.settings.experiment_settings.beamline = beamline
