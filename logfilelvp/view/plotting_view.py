@@ -21,6 +21,7 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 # -----------------------------------------------------------------------------
 
+from gsewidgets import Label, HorizontalLine
 from pathlib import PurePosixPath
 from qtpy.QtWidgets import QFrame, QVBoxLayout
 
@@ -35,6 +36,9 @@ class PlottingView(QFrame):
 
         self._directories = directories
 
+        # Widgets
+        self._lbl_plotting = Label("Plotting", object_name="lbl-large")
+
         # Configure the plotting view
         self.configure_plotting_view_and_view_widgets()
         self.configure_plotting_view_layout()
@@ -42,16 +46,20 @@ class PlottingView(QFrame):
     def configure_plotting_view_and_view_widgets(self) -> None:
         """Configure the plotting view and the plotting view widgets."""
         # Set the object name
-        self.setObjectName("plotting-view")
+        self.setObjectName("plotting")
 
         # Set the style sheet
         self.setStyleSheet(open(PurePosixPath(self._directories.style_path).joinpath("plotting.qss").as_posix(), "r").read())
 
     def configure_plotting_view_layout(self) -> None:
         """Configure the layout of the plotting view."""
-
         # Plotting layout
         plotting_layout = QVBoxLayout()
+        plotting_layout.setContentsMargins(0, 0, 0, 0)
+        plotting_layout.setSpacing(0)
+        plotting_layout.addWidget(self._lbl_plotting)
+        plotting_layout.addWidget(HorizontalLine(object_name="line-settings"))
+        plotting_layout.addStretch(1)
 
         # Set the layout
         self.setLayout(plotting_layout)

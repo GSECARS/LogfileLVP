@@ -21,6 +21,7 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 # -----------------------------------------------------------------------------
 
+from gsewidgets import Label, HorizontalLine
 from pathlib import PurePosixPath
 from qtpy.QtWidgets import QFrame, QVBoxLayout
 
@@ -35,6 +36,9 @@ class ExperimentView(QFrame):
 
         self._directories = directories
 
+        # Widgets
+        self._lbl_experiment = Label("Experiment", object_name="lbl-large")
+
         # Configure the experiment view
         self.configure_experiment_view_and_view_widgets()
         self.configure_experiment_view_layout()
@@ -42,16 +46,20 @@ class ExperimentView(QFrame):
     def configure_experiment_view_and_view_widgets(self) -> None:
         """Configure the experiment view and the experiment view widgets."""
         # Set the object name
-        self.setObjectName("experiment-view")
+        self.setObjectName("experiment")
 
         # Set the style sheet
         self.setStyleSheet(open(PurePosixPath(self._directories.style_path).joinpath("experiment.qss").as_posix(), "r").read())
 
     def configure_experiment_view_layout(self) -> None:
         """Configure the layout of the experiment view."""
-
         # Experiment layout
         experiment_layout = QVBoxLayout()
+        experiment_layout.setContentsMargins(0, 0, 0, 0)
+        experiment_layout.setSpacing(0)
+        experiment_layout.addWidget(self._lbl_experiment)
+        experiment_layout.addWidget(HorizontalLine(object_name="line-settings"))
+        experiment_layout.addStretch(1)
 
         # Set the layout
         self.setLayout(experiment_layout)

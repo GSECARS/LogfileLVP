@@ -39,7 +39,7 @@ class SettingsView(QFrame):
         self._directories = directories
 
         # Widgets
-        self._lbl_settings = Label("Settings", object_name="lbl-settings-large")
+        self._lbl_settings = Label("Settings", object_name="lbl-large")
         self._lbl_base_directory = Label("Base Directory", object_name="lbl-settings-first")
         self.btn_select_base_directory = DirectoryBrowserButton(
             size=QSize(38, 38), object_name="button-directory", icon=QIcon(PurePosixPath(self._directories.icon_path).joinpath("experiments.svg").as_posix())
@@ -73,7 +73,7 @@ class SettingsView(QFrame):
 
         # Settings layout
         settings_layout = QVBoxLayout()
-        settings_layout.setContentsMargins(0, 0, 0, 0)
+        settings_layout.setContentsMargins(0, 0, 10, 0)
         settings_layout.setSpacing(0)
         settings_layout.addWidget(self._lbl_settings)
         settings_layout.addWidget(HorizontalLine(object_name="line-settings"))
