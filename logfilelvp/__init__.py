@@ -1,35 +1,42 @@
 #!/usr/bin/python3
-# -----------------------------------------------------------------------------
+# ----------------------------------------------------------------------------------
 # Project: LogfileLVP
-# File: __init__.py
-# -----------------------------------------------------------------------------
+# File: logfilelvp/__init__.py
+# ----------------------------------------------------------------------------------
 # Purpose:
-# This file is used to initialize the LogfileLVP package. It creates the main
-# application object and sets the version of the package.
-# -----------------------------------------------------------------------------
+# This file is used to initialize the LogfileLVP package.
+# ----------------------------------------------------------------------------------
 # Author: Christofanis Skordas
 #
-# Copyright (C) 2024 GSECARS, The University of Chicago, USA
-#
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <https://www.gnu.org/licenses/>.#
-# -----------------------------------------------------------------------------
+# Copyright (C) 2024-2025 GSECARS, The University of Chicago, USA
+# ----------------------------------------------------------------------------------
 
-from logfilelvp.version import get_static_version
-from logfilelvp.controller import MainController
+import argparse
 
-__all__ = ["__version__", "app"]
-__version__ = get_static_version()
+__all__ = ["main"]
 
-# Application controller
-app = MainController()
+from logfilelvp.controller import start_GUI
+from logfilelvp.utils import create_shortcut
+
+
+def main() -> None:
+    """Main entry point for the LogfileLVP application."""
+    parser = argparse.ArgumentParser(description="A python application for creating experiment run folders and logs")
+    parser.add_argument("-m", "--make-icon", action="store_true", help="create desktop shortcut")
+    parser.add_argument("-g", "--gui", action="store_true", help="start the GUI application")
+
+    args = parser.parse_args()
+
+    if args.make_icon:
+        # Create desktop shortcut
+        create_shortcut()
+    elif args.gui:
+        # Start the GUI application
+        start_GUI()
+    else:
+        # Display help message
+        parser.print_help()
+
+
+if __name__ == "__main__":
+    main()

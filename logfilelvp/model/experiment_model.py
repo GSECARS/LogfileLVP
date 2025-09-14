@@ -1,26 +1,17 @@
+# -----------------------------------------------------------------------------
 #!/usr/bin/python3
-# -----------------------------------------------------------------------------
-# Project: LogFileLVP
-# File: experiment_model.py
-# Author: Christofanis Skordas (skordasc@uchicago.edu)
-# -----------------------------------------------------------------------------
+# ----------------------------------------------------------------------------------
+# Project: LogfileLVP
+# File: logfilelvp/model/experiment_model.py
+# ----------------------------------------------------------------------------------
 # Purpose:
-# This file is used to find the next available experiment number and create
-# the new experiment directory.
+# This file is used to find the next available experiment number and create the new
+# experiment directory.
+# ----------------------------------------------------------------------------------
+# Author: Christofanis Skordas
 #
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <https://www.gnu.org/licenses/>.
-# ----------------------------------------------------------------------
+# Copyright (C) 2024-2025 GSECARS, The University of Chicago, USA
+# ----------------------------------------------------------------------------------
 
 import re
 from dataclasses import dataclass, field
@@ -28,6 +19,8 @@ from pathlib import Path
 from typing import Pattern
 
 from logfilelvp.model.settings.experiment_settings_model import ExperimentSettingsModel
+
+__all__ = ["ExperimentModel"]
 
 
 @dataclass

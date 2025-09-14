@@ -1,54 +1,27 @@
-# -----------------------------------------------------------------------------
+# ----------------------------------------------------------------------------------
 # Project: LogfileLVP
-# File: setup.cfg
-# -----------------------------------------------------------------------------
+# File: .pre-commit-config.yaml
+# ----------------------------------------------------------------------------------
 # Purpose: 
-# This file is used to configure the packaging, and the distribution process 
-# for the LogfileLVP project. It is used by setup tools like setuptools 
-# and distutils.
-# -----------------------------------------------------------------------------
+# This file is used to configure pre-commit hooks for the project.
+# ----------------------------------------------------------------------------------
 # Author: Christofanis Skordas
 #
-# Copyright (C) 2024 GSECARS, The University of Chicago, USA
-#
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <https://www.gnu.org/licenses/>.#
-# -----------------------------------------------------------------------------
+# Copyright (C) 2024-2025 GSECARS, The University of Chicago, USA
+# ----------------------------------------------------------------------------------
 
 repos:
-  - repo: https://github.com/psf/black
-    rev: 24.3.0
+  - repo: https://github.com/astral-sh/uv-pre-commit
+    # uv version.
+    rev: 0.8.17
     hooks:
-      - id: black
-        language_version: python3.12
-        args: ["--config=pyproject.toml"]
+      - id: uv-lock
 
-  - repo: https://github.com/pycqa/flake8
-    rev: 7.0.0
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+  # Ruff version.
+    rev: v0.13.0
     hooks:
-      - id: flake8
-        additional_dependencies: ["Flake8-pyproject"]
-
-  - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v1.9.0
-    hooks:
-      - id: mypy
-        args: ["--config=pyproject.toml"]
-
-  - repo: local
-    hooks:
-      - id: version
-        name: Update version
-        entry: python logfilelvp/version.py
-        language: system
-        pass_filenames: false
+      # Run the linter.
+      - id: ruff-check
+      # Run the formatter.
+      - id: ruff-format

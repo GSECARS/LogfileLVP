@@ -1,33 +1,16 @@
 #!/usr/bin/python3
-# -----------------------------------------------------------------------------
+# ----------------------------------------------------------------------------------
 # Project: LogfileLVP
-# File: __init__.py
-# -----------------------------------------------------------------------------
+# File: logfilelvp/view/__init__.py
+# ----------------------------------------------------------------------------------
 # Purpose:
 # This file is used to initialize the view package of the LogfileLVP.
-# -----------------------------------------------------------------------------
+# ----------------------------------------------------------------------------------
 # Author: Christofanis Skordas
 #
-# Copyright (C) 2024 GSECARS, The University of Chicago, USA
-#
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <https://www.gnu.org/licenses/>.#
-# -----------------------------------------------------------------------------
+# Copyright (C) 2024-2025 GSECARS, The University of Chicago, USA
+# ----------------------------------------------------------------------------------
 
-from logfilelvp.view.sidebar_view import SidebarView
-from logfilelvp.view.experiment_view import ExperimentView
-from logfilelvp.view.plotting_view import PlottingView
-from logfilelvp.view.settings_view import SettingsView
 from logfilelvp.view.main_view import MainView
 
-__all__ = ["SidebarView", "ExperimentView", "PlottingView", "SettingsView", "MainView"]
+__all__ = ["MainView"]

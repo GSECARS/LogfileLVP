@@ -1,17 +1,13 @@
-# -----------------------------------------------------------------------------
-#!/usr/bin/python3
 # ----------------------------------------------------------------------------------
 # Project: LogfileLVP
-# File: logfilelvp/model/__init__.py
+# File: .python-version
 # ----------------------------------------------------------------------------------
-# Purpose:
-# This file is used to initialize the model package for the LogfileLVP project.
+# Purpose: 
+# This file is used to keep track of the python version of the project.
 # ----------------------------------------------------------------------------------
 # Author: Christofanis Skordas
 #
-# Copyright (C) 2024-2025 GSECARS, The University of Chicago, USA
+# Copyright (c) 2024-2025 GSECARS, The University of Chicago, USA
 # ----------------------------------------------------------------------------------
 
-from logfilelvp.model.main_model import MainModel
-
-__all__ = ["MainModel"]
+3.13

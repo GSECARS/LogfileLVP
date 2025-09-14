@@ -1,17 +1,16 @@
-# -----------------------------------------------------------------------------
 #!/usr/bin/python3
 # ----------------------------------------------------------------------------------
 # Project: LogfileLVP
-# File: logfilelvp/model/__init__.py
+# File: logfilelvp/utils/__init__.py
 # ----------------------------------------------------------------------------------
 # Purpose:
-# This file is used to initialize the model package for the LogfileLVP project.
+# This file is used to initialize the utils package of the LogfileLVP.
 # ----------------------------------------------------------------------------------
 # Author: Christofanis Skordas
 #
 # Copyright (C) 2024-2025 GSECARS, The University of Chicago, USA
 # ----------------------------------------------------------------------------------
 
-from logfilelvp.model.main_model import MainModel
+from logfilelvp.utils.shortcut import create_shortcut
 
-__all__ = ["MainModel"]
+__all__ = ["create_shortcut"]

@@ -1,31 +1,22 @@
 #!/usr/bin/python3
-# -----------------------------------------------------------------------------
+# ----------------------------------------------------------------------------------
 # Project: LogfileLVP
-# File: __init__.py
-# -----------------------------------------------------------------------------
+# File: logfilelvp/controller/__init__.py
+# ----------------------------------------------------------------------------------
 # Purpose:
 # This file is used to initialize the controller package of the LogfileLVP.
-# -----------------------------------------------------------------------------
+# ----------------------------------------------------------------------------------
 # Author: Christofanis Skordas
 #
-# Copyright (C) 2024 GSECARS, The University of Chicago, USA
-#
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <https://www.gnu.org/licenses/>.#
-# -----------------------------------------------------------------------------
+# Copyright (C) 2024-2025 GSECARS, The University of Chicago, USA
+# ----------------------------------------------------------------------------------
 
-from logfilelvp.controller.sidebar_controller import SidebarController
-from logfilelvp.controller.settings_controller import SettingsController
 from logfilelvp.controller.main_controller import MainController
 
-__all__ = ["SidebarController", "SettingsController", "MainController"]
+__all__ = ["start_GUI"]
+
+
+def start_GUI() -> None:
+    """Run the main application."""
+    controller = MainController()
+    controller.run()
